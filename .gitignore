@@ -1,0 +1,12 @@
+target/classes/com/novoclarus/martianrobots/Constants.class
+target/classes/com/novoclarus/martianrobots/MartianRobots.class
+target/classes/com/novoclarus/martianrobots/Robot.class
+target/classes/com/novoclarus/martianrobots/Status.class
+target/classes/com/novoclarus/martianrobots/World.class
+target/classes/com/novoclarus/martianrobots/instructions/Instruction.class
+target/classes/com/novoclarus/martianrobots/instructions/InstructionFactory.class
+target/classes/com/novoclarus/martianrobots/instructions/MoveInstruction.class
+target/classes/com/novoclarus/martianrobots/instructions/impl/ForwardInstructionImpl.class
+target/classes/com/novoclarus/martianrobots/instructions/impl/InstructionFactoryImpl.class
+target/classes/com/novoclarus/martianrobots/instructions/impl/MoveInstructionImpl.class
+target/test-classes/com/novoclarus/martianrobots/instructions/impl/ForwardInstructionImplTest.class
