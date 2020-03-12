@@ -1,3 +1,5 @@
 *.class
 target/classes/META-INF/martianrobots.kotlin_module
 
+target/surefire-reports
+target/maven-status
