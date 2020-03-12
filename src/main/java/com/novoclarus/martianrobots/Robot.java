@@ -1,6 +1,11 @@
 package com.novoclarus.martianrobots;
 
+import com.novoclarus.martianrobots.instructions.Instruction;
+import com.novoclarus.martianrobots.instructions.InstructionFactory;
+import com.novoclarus.martianrobots.instructions.MoveInstruction;
+
 import java.util.List;
+import java.util.Objects;
 
 import static com.novoclarus.martianrobots.Status.LOST;
 import static com.novoclarus.martianrobots.Status.OK;
@@ -12,7 +17,7 @@ public class Robot
     private int positionX;
     private int positionY;
     private String orientation;
-    private Status status;
+    private Status status = OK;
 
     public Robot(final World world, final int positionX, final int positionY, final String orientation)
     {
@@ -32,9 +37,28 @@ public class Robot
         this.status = robot.status;
     }
 
-    public void executeInstruction(String instruction)
+    public void executeInstruction(final String instruction)
     {
+        final Instruction instructionInstance = InstructionFactory.getInstruction(instruction);
 
+        if (instructionInstance instanceof MoveInstruction)
+        {
+            MoveInstruction moveInstruction = (MoveInstruction) instructionInstance;
+            Robot futureRobot = moveInstruction.previewMove(this);
+
+            if (futureRobot.getStatus() == LOST)
+            {
+                for (Robot ancestor : ancestors)
+                {
+                    if (this.equals(ancestor))
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        instructionInstance.execute(this);
     }
 
     public void moveHorizontally(final int distance)
@@ -70,11 +94,28 @@ public class Robot
         return status;
     }
 
-
     private boolean isOffworld()
     {
         return positionX < world.getMinBoundaryX() || positionX > world.getMaxBoundaryX()
                 || positionY < world.getMinBoundaryY() || positionY > world.getMaxBoundaryY();
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Robot robot = (Robot) o;
+        return positionX == robot.positionX &&
+                positionY == robot.positionY &&
+                orientation.equals(robot.orientation) &&
+                status == robot.status;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(positionX, positionY, orientation, status);
     }
 
     public int getPositionX()

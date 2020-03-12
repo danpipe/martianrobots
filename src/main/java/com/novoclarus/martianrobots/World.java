@@ -2,40 +2,28 @@ package com.novoclarus.martianrobots;
 
 public class World
 {
-    private int minBoundaryX;
     private int maxBoundaryX;
-    private int minBoundaryY;
     private int maxBoundaryY;
 
-    public int getMinBoundaryX() {
-        return minBoundaryX;
+    public World(int maxBoundaryX, int maxBoundaryY)
+    {
+        this.maxBoundaryX = maxBoundaryX;
+        this.maxBoundaryY = maxBoundaryY;
     }
 
-    public void setMinBoundaryX(int minBoundaryX) {
-        this.minBoundaryX = minBoundaryX;
+    public int getMinBoundaryX() {
+        return 0;
     }
 
     public int getMaxBoundaryX() {
         return maxBoundaryX;
     }
 
-    public void setMaxBoundaryX(int maxBoundaryX) {
-        this.maxBoundaryX = maxBoundaryX;
-    }
-
     public int getMinBoundaryY() {
-        return minBoundaryY;
-    }
-
-    public void setMinBoundaryY(int minBoundaryY) {
-        this.minBoundaryY = minBoundaryY;
+        return 0;
     }
 
     public int getMaxBoundaryY() {
         return maxBoundaryY;
-    }
-
-    public void setMaxBoundaryY(int maxBoundaryY) {
-        this.maxBoundaryY = maxBoundaryY;
     }
 }

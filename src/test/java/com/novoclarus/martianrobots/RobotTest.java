@@ -12,7 +12,7 @@ public class RobotTest
     @Test
     public void testShouldReportOKStatus()
     {
-        final Robot robot = new Robot(new World(), 0, 0, ORIENTATION_NORTH);
+        final Robot robot = new Robot(new World(0, 0), 0, 0, ORIENTATION_NORTH);
         robot.checkStatus();
 
         final String expectedStatusReport = "0 0 " + ORIENTATION_NORTH;
@@ -23,7 +23,7 @@ public class RobotTest
     @Test
     public void testShouldReportLostStatus()
     {
-        final Robot robot = new Robot(new World(), 1, 1, ORIENTATION_EAST);
+        final Robot robot = new Robot(new World(0, 0), 1, 1, ORIENTATION_EAST);
         robot.checkStatus();
 
         final String expectedStatusReport = "1 1 " + ORIENTATION_EAST + " LOST";

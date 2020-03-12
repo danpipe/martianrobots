@@ -16,14 +16,13 @@ import static org.junit.Assert.assertNotEquals;
 
 public class ForwardInstructionImplTest
 {
-    private World world = new World();
+    private World world;
     private ForwardInstructionImpl forwardInstruction = new ForwardInstructionImpl();
 
     @Before
     public void setUp()
     {
-        world.setMaxBoundaryX(5);
-        world.setMaxBoundaryY(3);
+        world = new World(5, 3);
     }
 
     @Test

@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class RotateLeftInstructionImplTest
 {
-    private World world = new World();
+    private World world = new World(0, 0);
     private RotateLeftInstructionImpl rotateLeftInstruction = new RotateLeftInstructionImpl();
 
     @Test
