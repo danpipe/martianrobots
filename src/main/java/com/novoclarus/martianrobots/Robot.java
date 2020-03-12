@@ -4,6 +4,7 @@ import com.novoclarus.martianrobots.instructions.Instruction;
 import com.novoclarus.martianrobots.instructions.InstructionFactory;
 import com.novoclarus.martianrobots.instructions.MoveInstruction;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,12 +13,18 @@ import static com.novoclarus.martianrobots.Status.OK;
 
 public class Robot
 {
-    private List<Robot> ancestors;
+    private List<Robot> ancestors = new ArrayList<>();
     private World world;
     private int positionX;
     private int positionY;
     private String orientation;
     private Status status = OK;
+
+    public Robot(final World world, final List<Robot> ancestors)
+    {
+        this.world = world;
+        this.ancestors = ancestors;
+    }
 
     public Robot(final World world, final int positionX, final int positionY, final String orientation)
     {
@@ -29,7 +36,7 @@ public class Robot
 
     public Robot(final Robot robot)
     {
-        this.ancestors = robot.ancestors;
+        this.ancestors = new ArrayList<>(robot.ancestors);
         this.world = robot.world;
         this.positionX = robot.positionX;
         this.positionY = robot.positionY;
@@ -48,17 +55,21 @@ public class Robot
 
             if (futureRobot.getStatus() == LOST)
             {
+                this.status = LOST;
+
                 for (Robot ancestor : ancestors)
                 {
                     if (this.equals(ancestor))
                     {
-                        return;
+                        this.status = OK;
                     }
                 }
+                return;
             }
         }
 
         instructionInstance.execute(this);
+
     }
 
     public void moveHorizontally(final int distance)
@@ -85,12 +96,18 @@ public class Robot
             statusReport.append(" ").append(status);
         }
 
-        return statusReport.toString();
+        return statusReport.append("\n").toString();
     }
 
     protected Status checkStatus()
     {
         status = isOffworld() ? LOST : OK;
+
+        if (LOST.equals(status))
+        {
+            ancestors.add(this);
+        }
+
         return status;
     }
 
@@ -101,7 +118,7 @@ public class Robot
     }
 
     @Override
-    public boolean equals(Object o)
+    public boolean equals(final Object o)
     {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -123,9 +140,19 @@ public class Robot
         return positionX;
     }
 
+    public void setPositionX(final int positionX)
+    {
+        this.positionX = positionX;
+    }
+
     public int getPositionY()
     {
         return positionY;
+    }
+
+    public void setPositionY(final int positionY)
+    {
+        this.positionY = positionY;
     }
 
     public String getOrientation()
@@ -133,7 +160,7 @@ public class Robot
         return orientation;
     }
 
-    public void setOrientation(String orientation)
+    public void setOrientation(final String orientation)
     {
         this.orientation = orientation;
     }

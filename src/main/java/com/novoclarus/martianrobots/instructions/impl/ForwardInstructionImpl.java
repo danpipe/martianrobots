@@ -10,7 +10,8 @@ import static com.novoclarus.martianrobots.Constants.ORIENTATION_WEST;
 public class ForwardInstructionImpl extends MoveInstructionImpl
 {
     @Override
-    public Robot execute(Robot robot) {
+    public Robot execute(Robot robot)
+    {
         switch (robot.getOrientation())
         {
             case ORIENTATION_NORTH:

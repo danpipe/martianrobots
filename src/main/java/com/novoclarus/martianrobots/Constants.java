@@ -11,7 +11,5 @@ public class Constants
     public static final String INSTRUCTION_RIGHT = "R";
     public static final String INSTRUCTION_LEFT = "L";
 
-    private Constants()
-    {
-    }
+    private Constants() { }
 }

@@ -4,5 +4,5 @@ import com.novoclarus.martianrobots.Robot;
 
 public interface MoveInstruction extends Instruction
 {
-    Robot previewMove(Robot robot);
+    Robot previewMove(final Robot robot);
 }

@@ -22,8 +22,10 @@ public class InstructionFactory
         instructions.put(INSTRUCTION_LEFT, new RotateLeftInstructionImpl());
     }
 
-    public static Instruction getInstruction(String instr)
+    public static Instruction getInstruction(final String instruction)
     {
-        return instructions.get(instr);
+        return instructions.get(instruction);
     }
+
+    private InstructionFactory() {}
 }

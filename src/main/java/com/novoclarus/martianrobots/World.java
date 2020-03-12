@@ -5,7 +5,7 @@ public class World
     private int maxBoundaryX;
     private int maxBoundaryY;
 
-    public World(int maxBoundaryX, int maxBoundaryY)
+    public World(final int maxBoundaryX, final int maxBoundaryY)
     {
         this.maxBoundaryX = maxBoundaryX;
         this.maxBoundaryY = maxBoundaryY;
