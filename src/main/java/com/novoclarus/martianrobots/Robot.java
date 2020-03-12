@@ -49,7 +49,22 @@ public class Robot
         checkStatus();
     }
 
-    public Status checkStatus()
+    public String getStatusReport()
+    {
+        StringBuilder statusReport = new StringBuilder();
+        statusReport.append(positionX).append(" ");
+        statusReport.append(positionY).append(" ");
+        statusReport.append(orientation);
+
+        if (LOST.equals(status))
+        {
+            statusReport.append(" ").append(status);
+        }
+
+        return statusReport.toString();
+    }
+
+    protected Status checkStatus()
     {
         status = isOffworld() ? LOST : OK;
         return status;
