@@ -126,7 +126,7 @@ public class ForwardInstructionImplTest
     public void testRobotShouldPreviewMoveNorthOk()
     {
         final Robot robot = new Robot(world, 0, 0, ORIENTATION_NORTH);
-        final Robot updatedRobot = forwardInstruction.execute(robot);
+        final Robot updatedRobot = forwardInstruction.previewMove(robot);
         assertEquals(0, updatedRobot.getPositionX());
         assertEquals(1, updatedRobot.getPositionY());
         assertEquals(ORIENTATION_NORTH, updatedRobot.getOrientation());

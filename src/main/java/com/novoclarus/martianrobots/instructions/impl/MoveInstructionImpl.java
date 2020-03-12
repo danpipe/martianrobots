@@ -7,12 +7,6 @@ public abstract class MoveInstructionImpl implements MoveInstruction
 {
     public Robot previewMove(Robot robot)
     {
-        return robot;
+        return execute(new Robot(robot));
     }
-
-    protected boolean isOffworld(Robot robot)
-    {
-        return false;
-    }
-
 }
