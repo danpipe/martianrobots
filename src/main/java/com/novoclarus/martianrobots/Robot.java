@@ -77,6 +77,11 @@ public class Robot
         return orientation;
     }
 
+    public void setOrientation(String orientation)
+    {
+        this.orientation = orientation;
+    }
+
     public Status getStatus()
     {
         return status;
